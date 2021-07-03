@@ -22,7 +22,8 @@ const simplifyUrl = (url) => {
 }
 
 const render = () => {
-    hashMap.forEach((node,index) => {
+    $siteList.find('li:not(.addWeb)').remove()
+    hashMap.forEach((node, index) => {
         if (node.logoType === 'svgSelf') {
             let $li = $(`
             <li>
@@ -43,13 +44,12 @@ const render = () => {
                 
             </li>
             `).insertBefore($addWeb)
-            $li.on('click',()=>{
+            $li.on('click', () => {
                 window.open(node.url)
             })
             $li.on('click', '.delete', (e) => {
                 e.stopPropagation() //阻止冒泡
-                hashMap.splice(index,1)
-                $siteList.find('li:not(.addWeb)').remove()
+                hashMap.splice(index, 1)
                 render()
             })
         } else {
@@ -70,13 +70,13 @@ const render = () => {
 
             </li>
             `).insertBefore($addWeb)
-            $li.on('click',()=>{
+            $li.on('click', () => {
                 window.open(node.url)
             })
             $li.on('click', '.delete', (e) => {
                 e.stopPropagation() //阻止冒泡
-                hashMap.splice(index,1)
-                $siteList.find('li:not(.addWeb)').remove()
+                hashMap.splice(index, 1)
+
                 render()
             })
         }
@@ -87,7 +87,7 @@ const render = () => {
 }
 render()
 $('.addButton').on('click', () => {
-    $siteList.find('li:not(.addWeb)').remove()
+
     console.log('123')
     let url = window.prompt(
         '请输入你要添加的网址'
@@ -99,7 +99,7 @@ $('.addButton').on('click', () => {
     console.log(url)
 
     hashMap.push({
-        logo: url[0],
+        logo: simplifyUrl(url)[0],
         logoType: 'text',
         url: url
     })
@@ -121,3 +121,33 @@ window.onbeforeunload = () => {
     const string = JSON.stringify(hashMap)
     localStorage.setItem('x', string)
 }
+
+$(document).on('keypress', (e) => {
+    let { key } = e
+    hashMap.forEach((node) => {
+        if (node.logo.toLowerCase()[0] === key) {
+            window.open(node.url)
+        }
+    })
+})
+
+console.log(hashMap)
+console.log(xObject)
+$(document).on('keypress', (e) => {
+    let { key } = e
+    console.log(key)
+        xObject.forEach(node => {
+            if (node.logo === key) {
+                window.open(node.url)
+            }
+        })
+})
+
+// for(let i = 0;i <hashMap.length|| xObject.length;i++){
+//     if(hashMap[i].logo.toLowerCase()[0]===key){
+//         window.open(hashMap[i].url)
+//     }else if(xObject[i].logo.toLowerCase()[0]===key){
+//         window.open(xObject[i].url)
+//     }
+// }
+render()
