@@ -131,11 +131,8 @@ $(document).on('keypress', (e) => {
     })
 })
 
-console.log(hashMap)
-console.log(xObject)
 $(document).on('keypress', (e) => {
     let { key } = e
-    console.log(key)
         xObject.forEach(node => {
             if (node.logo === key) {
                 window.open(node.url)
@@ -143,11 +140,4 @@ $(document).on('keypress', (e) => {
         })
 })
 
-// for(let i = 0;i <hashMap.length|| xObject.length;i++){
-//     if(hashMap[i].logo.toLowerCase()[0]===key){
-//         window.open(hashMap[i].url)
-//     }else if(xObject[i].logo.toLowerCase()[0]===key){
-//         window.open(xObject[i].url)
-//     }
-// }
 render()
