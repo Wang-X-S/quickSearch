@@ -43,6 +43,7 @@ body{
     margin-bottom: 20px;;
 }
 .siteList .site{
+   
     width:160px;
     height:120px;
     display: flex;
@@ -52,6 +53,17 @@ body{
     background: #fff;
     border-radius: 8px;
     padding:20px 0;
+    position:relative;
+    cursor:pointer;
+}
+.siteList .site .delete{
+    position: absolute;
+    top:5px;
+    right:5px;
+    display:none;
+}
+.siteList .site:hover .delete{
+    display:block
 }
 .siteList .logo{
 
