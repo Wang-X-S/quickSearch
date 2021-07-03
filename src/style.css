@@ -32,7 +32,7 @@ body{
     border-radius: 8px;
 }
 
-.globalMain{}
+
 .globalMain .siteList{
     margin:10px;
     flex-wrap: wrap;

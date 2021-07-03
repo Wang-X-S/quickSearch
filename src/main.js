@@ -10,12 +10,20 @@ const hashMap = xObject|| [
     { logo:'Stackoverflow', logoType:'svgSelf',url:'https://stackoverflow.com/'},
     { logo:'Leetcode', logoType:'svgSelf',url:'https://leetcode-cn.com/'},
     { logo:'zhihu', logoType:'svgSelf',url:'https://www.zhihu.com/'},
-
 ]
+
+const simplifyUrl = (url)=>{
+    return url.replace('http://','')
+    .replace('https://','')
+    .replace('www.','')
+    .replace(/\/.*/, '') // 删除 / 开头的内容
+    .replace('.com','')
+    .replace('.cn','')
+}
 
 const render =()=>{hashMap.forEach(node=>{
     if(node.logoType==='svgSelf'){
-    let $liSelf = $(`
+        $(`
             <li>
                 <a href="${node.url}">
                     <div class="site">
@@ -30,14 +38,14 @@ const render =()=>{hashMap.forEach(node=>{
             </li>
     `).insertBefore($addWeb)
     }else{
-        let $liSelf = $(`
+        $(`
             <li>
                 <a href="${node.url}">
                     <div class="site">
                         <div class="logo">
-                            ${node.logo[0]}
+                            ${simplifyUrl(node.url)[0].toUpperCase()}
                         </div>
-                        <dig class="link">${node.logo}</dig>
+                        <dig class="link">${simplifyUrl(node.url)}</dig>
                     </div>
                 </a>
             </li>
